@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -14,8 +15,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::post('/ui-login', [LoginController::class, 'login'])->name('ui.login');
+Route::post('/ui-logout', [LoginController::class, 'logout'])->name('ui.logout');
 Route::get('/', function () {
-    return view('content.dashboard');
+    return view('auth.login');
 });
 
 Route::get('/dashboard', function () {
@@ -28,4 +31,4 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
