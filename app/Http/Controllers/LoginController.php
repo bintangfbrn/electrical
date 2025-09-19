@@ -3,47 +3,55 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
+    /**
+     * Handle an authentication attempt.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function login(Request $request)
     {
         // Validasi input dari form
-        $request->validate([
-            'username' => 'required',
-            'password' => 'required',
+        $credentials = $request->validate([
+            'username' => 'required|string',
+            'password' => 'required|string',
         ]);
 
-        // Kirim ke API login
-        $response = Http::post(url('/api/login'), [
-            'email' => $request->username, // API kamu pakai "email"
-            'password' => $request->password,
-        ]);
+        // Ganti 'email' dengan 'username' jika itu yang digunakan di tabel users
+        // Atau ganti 'username' di sini menjadi 'email' jika itu yang digunakan di tabel
+        $field = filter_var($request->username, FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
 
-        if ($response->successful()) {
-            $data = $response->json();
+        if (Auth::attempt([$field => $credentials['username'], 'password' => $credentials['password']], $request->has('remember'))) {
+            // Jika autentikasi berhasil
+            $request->session()->regenerate();
 
-            // Simpan token ke session
-            session(['api_token' => $data['token']]);
-
-            return redirect()->route('dashboard')->with('success', 'Login berhasil');
+            return redirect()->intended('/dashboard'); // Ganti dengan rute dashboard Anda
         }
 
-        return back()->withErrors(['username' => 'Username atau password salah']);
+        // Jika autentikasi gagal
+        return back()->withErrors([
+            'username' => 'Username atau password yang Anda masukkan salah.',
+        ])->onlyInput('username');
     }
 
+    /**
+     * Log the user out of the application.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function logout(Request $request)
     {
-        $token = session('api_token');
+        Auth::logout();
 
-        if ($token) {
-            Http::withToken($token)->post(url('/api/logout'));
-        }
+        $request->session()->invalidate();
 
-        // Hapus token dari session
-        session()->forget('api_token');
+        $request->session()->regenerateToken();
 
-        return redirect()->route('login')->with('success', 'Logout berhasil');
+        return redirect('/');
     }
 }
