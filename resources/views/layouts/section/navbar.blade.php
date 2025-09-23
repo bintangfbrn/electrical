@@ -459,7 +459,7 @@
                               <div class="dropdown-divider"></div>
                           </li>
                           <li>
-                              <form action="{{ route('ui.logout') }}" method="POST">
+                              <form action="{{ route('ceklogout') }}" method="POST">
                                   @csrf
                                   <button type="submit" class="btn btn-danger">Logout</button>
                               </form>

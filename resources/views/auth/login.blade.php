@@ -75,7 +75,7 @@
                         <h4 class="mb-2">Selamat Datang di Sistem Tugas Akhir dan Kerja Praktek Itenas</h4>
                         <p class="mb-4">Isi username dan password sesuai dengan akun SIKAD.</p>
 
-                        <form id="formAuthentication" class="mb-3" method="POST" action="{{ route('ui.login') }}">
+                        <form id="formAuthentication" class="mb-3" method="POST" action="{{ route('ceklogin') }}">
                             @csrf
                             <div class="mb-3">
                                 <label for="username" class="form-label">Username</label>

@@ -12,7 +12,7 @@ Route::middleware('guest')->group(function () {
     })->name('login');
 
     // Proses login
-    Route::post('/ui-login', [LoginController::class, 'login'])->name('ui.login');
+    Route::post('/ui-login', [LoginController::class, 'login'])->name('ceklogin');
 });
 
 // Rute yang butuh autentikasi (auth)
@@ -21,7 +21,7 @@ Route::middleware('auth')->group(function () {
         return view('dashboard');
     })->name('dashboard');
 
-    Route::post('/ui-logout', [LoginController::class, 'logout'])->name('ui.logout');
+    Route::post('/ui-logout', [LoginController::class, 'logout'])->name('ceklogout');
 
     // Rute profil
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
