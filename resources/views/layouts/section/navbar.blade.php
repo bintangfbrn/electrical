@@ -459,12 +459,18 @@
                               <div class="dropdown-divider"></div>
                           </li>
                           <li>
-                              <form action="{{ route('ceklogout') }}" method="POST">
-                                  @csrf
-                                  <button type="submit" class="btn btn-danger">Logout</button>
-                              </form>
+                              <a class="dropdown-item" href="{{ route('ceklogout') }}"
+                                  onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                  <i class="bx bx-power-off me-2"></i>
+                                  <span class="align-middle">Log Out</span>
+                              </a>
 
+                              <form id="logout-form" action="{{ route('ceklogout') }}" method="POST"
+                                  class="d-none">
+                                  @csrf
+                              </form>
                           </li>
+
                       </ul>
                   </li>
                   <!--/ User -->
