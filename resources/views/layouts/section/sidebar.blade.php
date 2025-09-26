@@ -128,38 +128,42 @@
            </li> --}}
 
         <!-- Apps & Pages -->
-        @if (auth()->user() && auth()->user()->role === 'super_admin')
-            <li class="menu-header small text-uppercase"><span class="menu-header-text">Account Management</span></li>
-            {{-- <li class="menu-item">
+
+        {{-- @can('view_account-management') --}}
+        <li class="menu-header small text-uppercase"><span class="menu-header-text">Account Management</span></li>
+        {{-- <li class="menu-item">
             <a href="app-email.html" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-envelope"></i>
                 <div data-i18n="Email">Email</div>
             </a>
         </li> --}}
-            <li class="menu-item">
-                <a href="javascript:void(0);" class="menu-link menu-toggle">
-                    <i class="menu-icon tf-icons bx bx-food-menu"></i>
-                    <div data-i18n="Account Management">Account Management</div>
-                </a>
-                <ul class="menu-sub">
-                    <li class="menu-item">
-                        <a href="app-invoice-list.html" class="menu-link">
-                            <div data-i18n="Permission">Permission</div>
-                        </a>
-                    </li>
-                    <li class="menu-item">
-                        <a href="app-invoice-preview.html" class="menu-link">
-                            <div data-i18n="Role">Role</div>
-                        </a>
-                    </li>
-                    <li class="menu-item">
-                        <a href="app-invoice-edit.html" class="menu-link">
-                            <div data-i18n="User">User</div>
-                        </a>
-                    </li>
-                </ul>
-            </li>
-        @endif
+        <li class="menu-item">
+            <a href="javascript:void(0);" class="menu-link menu-toggle">
+                <i class="menu-icon tf-icons bx bx-food-menu"></i>
+                <div data-i18n="Account Management">Account Management</div>
+            </a>
+            <ul class="menu-sub">
+                <li class="menu-item">
+                    <a href="{{ route('akun.permission.index') }}" class="menu-link">
+                        <div data-i18n="Permission">Permission</div>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="app-invoice-preview.html" class="menu-link">
+                        <div data-i18n="Role">Role</div>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="app-invoice-edit.html" class="menu-link">
+                        <div data-i18n="User">User</div>
+                    </a>
+                </li>
+            </ul>
+        </li>
+        {{-- @endcan --}}
+        {{-- @canany(['update', 'view', 'delete'])
+        @endcanany --}}
+
         <!-- Components -->
         <li class="menu-header small text-uppercase"><span class="menu-header-text">Components</span></li>
         <!-- Cards -->
