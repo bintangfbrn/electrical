@@ -19,9 +19,10 @@ class PermissionController extends Controller
 
     public function index()
     {
-        // PermissionChecking(['view_permission', 'create_permission', 'edit_permission', 'delete_permission']);
+        PermissionChecking(['view_permission', 'create_permission', 'edit_permission', 'delete_permission']);
         if (request()->ajax()) {
             $data = Permission::get();
+            // dd($data);
             return DataTables::of($data)
                 ->addIndexColumn()
                 ->addColumn('action', function ($row) {

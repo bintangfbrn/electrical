@@ -22,7 +22,7 @@ Route::middleware('auth')->group(function () {
     Route::prefix('akun')->name('akun.')->group(function () {
         #permission
         Route::resource('permission', PermissionController::class);
-        Route::get('/permission/detail/{id}', [PermissionController::class, 'show'])->name('permission.show');
+        // Route::get('/permission/detail/{id}', [PermissionController::class, 'show'])->name('permission.show');
         // #role
         // Route::resource('role', RoleController::class);
         // Route::get('/role/detail/{id}', [RoleController::class, 'show'])->name('role.show');

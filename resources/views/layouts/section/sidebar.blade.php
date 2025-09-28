@@ -52,13 +52,13 @@
 
     <ul class="menu-inner py-1">
         <!-- Dashboards -->
-        <li class="menu-item active open">
+        <li class="menu-item">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-home-circle"></i>
                 <div data-i18n="Dashboards">Dashboard</div>
             </a>
             <ul class="menu-sub">
-                <li class="menu-item active">
+                <li class="menu-item">
                     <a href="index.html" class="menu-link">
                         <div data-i18n="Analyticsss">Analyticss</div>
                     </a>
@@ -137,13 +137,13 @@
                 <div data-i18n="Email">Email</div>
             </a>
         </li> --}}
-        <li class="menu-item">
+        <li class="menu-item @if (request()->routeIs('akun.permission.*')) active open @endif">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-food-menu"></i>
                 <div data-i18n="Account Management">Account Management</div>
             </a>
             <ul class="menu-sub">
-                <li class="menu-item">
+                <li class="menu-item @if (request()->routeIs('akun.permission.index')) active @endif">
                     <a href="{{ route('akun.permission.index') }}" class="menu-link">
                         <div data-i18n="Permission">Permission</div>
                     </a>

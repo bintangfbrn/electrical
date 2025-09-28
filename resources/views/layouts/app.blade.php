@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 
 <html lang="en" class="light-style layout-navbar-fixed layout-menu-fixed" dir="ltr" data-theme="theme-default"
-    data-assets-path="{{ asset('asset') }}/" data-template="vertical-menu-template-no-customizer">
+    data-asset-path="{{ asset('asset') }}/" data-template="vertical-menu-template-no-customizer">
 
 <head>
     <meta charset="utf-8" />
@@ -33,9 +33,18 @@
     <link rel="stylesheet" href="{{ asset('asset') }}/css/demo.css" />
 
     <!-- Vendors CSS -->
-    <link rel="stylesheet" href="{{ asset('asset') }}/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
-    <link rel="stylesheet" href="{{ asset('asset') }}/vendor/libs/typeahead-js/typeahead.css" />
-    <link rel="stylesheet" href="{{ asset('asset') }}/vendor/libs/apex-charts/apex-charts.css" />
+    <link rel="stylesheet" href="{{ asset('asset/vendor/libs/perfect-scrollbar/perfect-scrollbar.css') }}" />
+    <link rel="stylesheet" href="{{ asset('asset/vendor/libs/typeahead-js/typeahead.css') }}" />
+    <link rel="stylesheet" href="{{ asset('asset/vendor/libs/apex-charts/apex-charts.css') }}" />
+    <link rel="stylesheet" href="{{ asset('asset/vendor/libs/animate-css/animate.css') }}" />
+    <link rel="stylesheet" href="{{ asset('asset/vendor/libs/sweetalert2/sweetalert2.css') }}" />
+    <link rel="stylesheet" href="{{ asset('asset/vendor/libs/datatables-bs5/datatables.bootstrap5.css') }}" />
+    <link rel="stylesheet" href="{{ asset('asset/vendor/libs/select2/select2.css ') }}" />
+    <link rel="stylesheet"
+        href="{{ asset('asset/vendor/libs/datatables-responsive-bs5/responsive.bootstrap5.css') }}" />
+    <link rel="stylesheet" href="{{ asset('asset/vendor/libs/toastr/toastr.css') }}" />
+    <link rel="stylesheet" href="{{ asset('asset/vendor/libs/flatpickr/flatpickr.css') }}">
+
 
     <!-- Page CSS -->
 
@@ -120,7 +129,7 @@
     <!-- / Layout wrapper -->
 
     <!-- Core JS -->
-    <!-- build:js assets/vendor/js/core.js -->
+    <!-- build:js asset/vendor/js/core.js -->
     <script src="{{ asset('asset') }}/vendor/libs/jquery/jquery.js"></script>
     <script src="{{ asset('asset') }}/vendor/libs/popper/popper.js"></script>
     <script src="{{ asset('asset') }}/vendor/js/bootstrap.js"></script>
@@ -136,12 +145,51 @@
 
     <!-- Vendors JS -->
     <script src="{{ asset('asset') }}/vendor/libs/apex-charts/apexcharts.js"></script>
+    <link rel="stylesheet"
+        href="{{ asset('asset/vendor/libs/datatables-responsive-bs5/responsive.bootstrap5.css') }}" />
+    <link rel="stylesheet" href="{{ asset('asset/vendor/libs/datatables-bs5/datatables.bootstrap5.css') }}" />
+    <script src="{{ asset('asset/vendor/libs/sweetalert2/sweetalert2.js') }}"></script>
+    <script src="{{ asset('asset/vendor/libs/apex-charts/apexcharts.js') }}"></script>
+    <script src="{{ asset('asset/vendor/libs/sweetalert2/sweetalert2.js') }}"></script>
+    <script src="{{ asset('asset/vendor/libs/datatables-bs5/datatables-bootstrap5.js') }}"></script>
+    <script src="{{ asset('asset/vendor/libs/select2/select2.js') }}"></script>
+    <script src="{{ asset('asset/vendor/libs/toastr/toastr.js') }}"></script>
+    <script src="{{ asset('asset/vendor/libs/flatpickr/flatpickr.js') }}"></script>
+
 
     <!-- Main JS -->
     <script src="{{ asset('asset') }}/js/main.js"></script>
 
     <!-- Page JS -->
+    @yield('script')
     <script src="{{ asset('asset') }}/js/dashboards-analytics.js"></script>
+    <script src="{{ asset('asset/vendor/libs/datatables-bs5/datatables-bootstrap5.js') }}"></script>
+    <script>
+        window.baseUrl = "{{ url('/') }}";
+    </script>
+    @if (Session::has('swal'))
+        <script>
+            Swal.fire({
+                icon: '{{ session('swal')['icon'] }}',
+                title: '{{ session('swal')['title'] }}',
+                text: '{{ session('swal')['text'] }}',
+                showConfirmButton: false,
+                timer: 2000,
+            });
+        </script>
+    @endif
+    @if (Session::has('toastr'))
+        <script>
+            toastr['{{ session('toastr')['icon'] }}']('{{ session('toastr')['text'] }}',
+                '{{ session('toastr')['title'] }}', {
+                    closeButton: true,
+                    tapToDismiss: false,
+                    progressBar: true,
+                });
+        </script>
+    @endif
+
+
 </body>
 
 </html>
