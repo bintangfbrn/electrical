@@ -63,6 +63,7 @@ $(function () {
         console.log(message);
     };
 
+
     $(document).on("click", ".editPermission", function () {
         let id = $(this).data("id");
         let formAction = `${baseUrl}/akun/permission/${id}`;

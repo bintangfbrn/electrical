@@ -161,6 +161,7 @@
 
     <!-- Main JS -->
     <script src="{{ asset('asset') }}/js/main.js"></script>
+    @vite(['resources/js/general.js'])
 
     <!-- Page JS -->
     @yield('script')
