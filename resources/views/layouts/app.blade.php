@@ -25,6 +25,8 @@
     <!-- Icons -->
     <link rel="stylesheet" href="{{ asset('asset') }}/vendor/fonts/boxicons.css" />
     <link rel="stylesheet" href="{{ asset('asset') }}/vendor/fonts/fontawesome.css" />
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
     <link rel="stylesheet" href="{{ asset('asset') }}/vendor/fonts/flag-icons.css" />
 
     <!-- Core CSS -->

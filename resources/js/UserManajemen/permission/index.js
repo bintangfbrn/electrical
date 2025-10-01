@@ -122,6 +122,8 @@ $(function () {
     });
 });
 
+
+
 $(document).ready(function () {
     $('body').on('click', '.btn-show', function () {
         const id = $(this).data('id');
