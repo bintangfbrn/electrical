@@ -148,8 +148,8 @@
                         <div data-i18n="Permission">Permission</div>
                     </a>
                 </li>
-                <li class="menu-item">
-                    <a href="app-invoice-preview.html" class="menu-link">
+                <li class="menu-item @if (request()->routeIs('akun.role.index')) active @endif">
+                    <a href="{{ route('akun.role.index') }}" class="menu-link">
                         <div data-i18n="Role">Role</div>
                     </a>
                 </li>

@@ -13,3 +13,8 @@ Breadcrumbs::for('akun.permission.index', function ($trail) {
     $trail->parent('dashboard');
     $trail->push('Permission', route('akun.permission.index'));
 });
+
+Breadcrumbs::for('akun.role.index', function ($trail) {
+    $trail->parent('dashboard');
+    $trail->push('Role', route('akun.role.index'));
+});

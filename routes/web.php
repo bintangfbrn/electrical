@@ -3,6 +3,7 @@
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserManajemen\PermissionController;
+use App\Http\Controllers\UserManajemen\RoleController;
 use Illuminate\Support\Facades\Route;
 
 // Rute yang hanya bisa diakses oleh tamu (guest)
@@ -22,6 +23,7 @@ Route::middleware('auth')->group(function () {
     Route::prefix('akun')->name('akun.')->group(function () {
         #permission
         Route::resource('permission', PermissionController::class);
+        Route::resource('role', RoleController::class);
         // Route::get('/permission/detail/{id}', [PermissionController::class, 'show'])->name('permission.show');
         // #role
         // Route::resource('role', RoleController::class);
